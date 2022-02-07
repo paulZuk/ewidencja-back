@@ -26,9 +26,10 @@
     <script>
       const sendButton = document.getElementById("sendFile");
       const fileUpload = document.getElementById("fileUpload");
+      const error = document.getElementById("error");
 
       fileUpload.addEventListener("change", () => {
-        if (fileUpload.files[0].type !== "text/csv") {
+        if (!fileUpload.files[0].name.includes(".csv")) {
           error.style.display = "block";
 
           return;
@@ -39,9 +40,8 @@
 
       sendButton.addEventListener("click", () => {
         const csvFile = fileUpload.files[0];
-        const error = document.getElementById("error");
 
-        if (!csvFile || csvFile.type !== "text/csv") {
+        if (!csvFile) {
           return;
         }
 
